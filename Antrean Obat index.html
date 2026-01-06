@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Antrean Obat Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #0d6efd !important;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+        .feature-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .queue-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #dc3545;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .estimated-time {
+            color: #198754;
+            font-weight: bold;
+        }
+        .status-waiting { color: #ffc107; }
+        .status-processing { color: #0dcaf0; }
+        .status-completed { color: #198754; }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        .admin-panel {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-prescription-bottle-alt"></i> AntreObat Online
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#home">Beranda</a>
+                <a class="nav-link" href="#daftar">Daftar Antrean</a>
+                <a class="nav-link" href="#cek">Cek Antrean</a>
+                <a class="nav-link" href="admin.html">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold">Sistem Antrean Obat Online</h1>
+                    <p class="lead">Kurangi waktu tunggu, tingkatkan efisiensi pelayanan farmasi rumah sakit dengan sistem antrean digital yang aman dan terstruktur.</p>
+                    <a href="#daftar" class="btn btn-light btn-lg mt-3">
+                        <i class="fas fa-clipboard-list"></i> Daftar Antrean Sekarang
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <i class="fas fa-hospital-user" style="font-size: 200px; opacity: 0.9;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container" id="features">
+        <h2 class="text-center mb-5">Fitur Unggulan Sistem</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                        <h4 class="card-title">Pendaftaran Online</h4>
+                        <p class="card-text">Daftar antrean dari mana saja melalui website, tanpa perlu datang lebih awal.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-clock fa-3x text-success mb-3"></i>
+                        <h4 class="card-title">Estimasi Waktu</h4>
+                        <p class="card-text">Dapatkan estimasi waktu tunggu secara real-time untuk perencanaan yang lebih baik.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-shield-alt fa-3x text-warning mb-3"></i>
+                        <h4 class="card-title">Keamanan Data</h4>
+                        <p class="card-text">Data pasien terlindungi dengan protokol HTTPS dan enkripsi standar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="container mt-5" id="daftar">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-user-plus"></i> Form Pendaftaran Antrean</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="registrationForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nama" class="form-label">Nama Lengkap *</label>
+                                    <input type="text" class="form-control" id="nama" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="noRekamMedis" class="form-label">No. Rekam Medis *</label>
+                                    <input type="text" class="form-control" id="noRekamMedis" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="telepon" class="form-label">No. Telepon *</label>
+                                    <input type="tel" class="form-control" id="telepon" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="resepDokter" class="form-label">Jenis Resep</label>
+                                <select class="form-select" id="resepDokter">
+                                    <option value="biasa">Resep Biasa</option>
+                                    <option value="kronis">Resep Kronis</option>
+                                    <option value="anak">Resep Anak</option>
+                                    <option value="antibiotik">Antibiotik</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="setuju" required>
+                                <label class="form-check-label" for="setuju">
+                                    Saya setuju dengan syarat dan ketentuan yang berlaku
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-paper-plane"></i> Daftar Antrean
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Check Queue Section -->
+    <section class="container mt-5" id="cek">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0"><i class="fas fa-search"></i> Cek Status Antrean</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <label for="kodeAntrean" class="form-label">Masukkan Kode Antrean Anda</label>
+                            <input type="text" class="form-control" id="kodeAntrean" placeholder="Contoh: AOB-001">
+                        </div>
+                        <button onclick="cekAntrean()" class="btn btn-success w-100">
+                            <i class="fas fa-search"></i> Cek Status
+                        </button>
+                        
+                        <div id="queueStatus" class="mt-4" style="display: none;">
+                            <hr>
+                            <h5 class="text-center">Status Antrean Anda</h5>
+                            <div class="queue-number" id="nomorAntrean">AOB-001</div>
+                            <div class="text-center">
+                                <p>Nama: <span id="namaPasien">-</span></p>
+                                <p>Status: <span id="statusAntrean" class="status-waiting">Menunggu</span></p>
+                                <p>Estimasi Waktu Tunggu: <span id="estimasiWaktu" class="estimated-time">15 menit</span></p>
+                                <p>Nomor yang sedang diproses: <span id="nomorSekarang">AOB-001</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Queue Display -->
+    <section class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="fas fa-tv"></i> Informasi Antrean Saat Ini</h4>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <h6>Sedang Diproses</h6>
+                        <div class="queue-number">AOB-001</div>
+                        <p class="text-muted">Resep Biasa</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Berikutnya</h6>
+                        <div class="queue-number">AOB-002</div>
+                        <p class="text-muted">Resep Kronis</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Estimasi Rata-rata</h6>
+                        <div class="estimated-time" style="font-size: 2rem;">10-15 menit</div>
+                        <p class="text-muted">Per nomor antrean</p>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <h6>Antrean Hari Ini:</h6>
+                    <div class="d-flex flex-wrap gap-2" id="queueList">
+                        <span class="badge bg-warning">AOB-001</span>
+                        <span class="badge bg-secondary">AOB-002</span>
+                        <span class="badge bg-secondary">AOB-003</span>
+                        <span class="badge bg-secondary">AOB-004</span>
+                        <span class="badge bg-secondary">AOB-005</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Sistem Antrean Obat Online</h5>
+                    <p>Proyek Kelompok 15 - Digitalisasi Layanan Farmasi</p>
+                    <p>Shadrina Izzati (K1D024066)<br>
+                    Affifah Tharra Arendra (K1D024067)</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Universitas Jenderal Soedirman<br>
+                    Fakultas MIPA - Program Studi Statistika<br>
+                    Purwokerto, 2025</p>
+                    <p><i class="fas fa-lock"></i> Dilindungi HTTPS</p>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <p class="text-center mb-0">© 2025 Sistem Antrean Obat Online. Hak cipta dilindungi undang-undang.</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- JavaScript -->
+    <script>
+        // Data antrean simulasi
+        let antreanList = [
+            { id: 1, kode: 'AOB-001', nama: 'Budi Santoso', status: 'processing', waktu: '15 menit' },
+            { id: 2, kode: 'AOB-002', nama: 'Siti Aisyah', status: 'waiting', waktu: '30 menit' },
+            { id: 3, kode: 'AOB-003', nama: 'Ahmad Rizki', status: 'waiting', waktu: '45 menit' },
+            { id: 4, kode: 'AOB-004', nama: 'Dewi Lestari', status: 'waiting', waktu: '60 menit' }
+        ];
+
+        // Form pendaftaran
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Generate nomor antrean baru
+            const newId = antreanList.length + 1;
+            const newKode = `AOB-${newId.toString().padStart(3, '0')}`;
+            const nama = document.getElementById('nama').value;
+            
+            // Tambah ke daftar antrean
+            antreanList.push({
+                id: newId,
+                kode: newKode,
+                nama: nama,
+                status: 'waiting',
+                waktu: `${(newId * 15)} menit`
+            });
+            
+            // Tampilkan konfirmasi
+            alert(`Pendaftaran berhasil!\n\nNomor Antrean Anda: ${newKode}\nEstimasi Waktu: ${(newId * 15)} menit\n\nSimpan kode ini untuk mengecek status antrean.`);
+            
+            // Reset form
+            document.getElementById('registrationForm').reset();
+            
+            // Update tampilan antrean
+            updateQueueDisplay();
+        });
+
+        // Fungsi cek antrean
+        function cekAntrean() {
+            const kode = document.getElementById('kodeAntrean').value.toUpperCase();
+            const antrean = antreanList.find(item => item.kode === kode);
+            
+            const statusDiv = document.getElementById('queueStatus');
+            
+            if (antrean) {
+                document.getElementById('nomorAntrean').textContent = antrean.kode;
+                document.getElementById('namaPasien').textContent = antrean.nama;
+                
+                // Set status
+                const statusElem = document.getElementById('statusAntrean');
+                statusElem.textContent = antrean.status === 'processing' ? 'Diproses' : 
+                                         antrean.status === 'completed' ? 'Selesai' : 'Menunggu';
+                statusElem.className = antrean.status === 'processing' ? 'status-processing' : 
+                                      antrean.status === 'completed' ? 'status-completed' : 'status-waiting';
+                
+                document.getElementById('estimasiWaktu').textContent = antrean.waktu;
+                document.getElementById('nomorSekarang').textContent = antreanList[0].kode;
+                
+                statusDiv.style.display = 'block';
+            } else {
+                alert('Kode antrean tidak ditemukan. Silakan periksa kembali.');
+                statusDiv.style.display = 'none';
+            }
+        }
+
+        // Fungsi update tampilan antrean
+        function updateQueueDisplay() {
+            const queueList = document.getElementById('queueList');
+            queueList.innerHTML = '';
+            
+            antreanList.forEach(antrean => {
+                const badgeClass = antrean.status === 'processing' ? 'bg-warning' : 
+                                  antrean.status === 'completed' ? 'bg-success' : 'bg-secondary';
+                
+                const badge = document.createElement('span');
+                badge.className = `badge ${badgeClass}`;
+                badge.textContent = antrean.kode;
+                badge.style.cursor = 'pointer';
+                badge.onclick = () => {
+                    document.getElementById('kodeAntrean').value = antrean.kode;
+                    cekAntrean();
+                };
+                
+                queueList.appendChild(badge);
+            });
+            
+            // Update nomor yang sedang diproses
+            if (antreanList.length > 0) {
+                document.querySelector('.queue-number').textContent = antreanList[0].kode;
+            }
+        }
+
+        // Simulasi admin memproses antrean
+        function simulateQueueProcessing() {
+            if (antreanList.length > 0) {
+                // Pindah status antrean pertama ke completed
+                antreanList[0].status = 'completed';
+                
+                // Antrean berikutnya jadi processing
+                if (antreanList.length > 1) {
+                    antreanList[1].status = 'processing';
+                }
+                
+                // Update tampilan
+                updateQueueDisplay();
+            }
+        }
+
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', function() {
+            updateQueueDisplay();
+            
+            // Simulasi pemrosesan antrean setiap 30 detik
+            setInterval(simulateQueueProcessing, 30000);
+        });
+    </script>
+</body>
+</html>
